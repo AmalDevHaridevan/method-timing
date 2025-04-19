@@ -15,6 +15,7 @@ class A:
 Using ```MethodTimer``` to call ```fnc3(...)``` will implicitly time the calls to ```fnc2``` and ```fnc1```.
 # Visualization
 ```python
+# we use weakref to hold raw_obj, so no need to worry about raw_obj being persistent if you no longer need it
 raw_obj = A(...)
 wrapped_obj = MethodTimer(raw_obj)
 for i in range(1000):
