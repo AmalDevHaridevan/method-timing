@@ -16,7 +16,7 @@ Using ```MethodTimer``` to call ```fnc3(...)``` will implicitly time the calls t
 # Visualization
 ```python
 raw_obj = A(...)
-wrapped_obj = MethodTimer(raw-obj)
+wrapped_obj = MethodTimer(raw_obj)
 for i in range(1000):
   wrapped_obj.fnc3(...)
 timing_data = wrapped_obj.data_
