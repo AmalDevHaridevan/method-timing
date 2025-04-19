@@ -102,6 +102,9 @@ class MethodTimer:
         hist_kwargs: dict
             keyword arguments for matplotlib hist
         """
+        if not MATPLOTLIB_FOUND:
+            print("No matplotlib installation found, cannot create plots")
+            return
         time_map = super(MethodTimer, self).__getattribute__('time_map_')
         if isinstance(names, str):
             names = (names, )
@@ -132,6 +135,9 @@ class MethodTimer:
         plot_kwargs: dict
             keyword arguments for matplotlib plot
         """
+        if not MATPLOTLIB_FOUND:
+            print("No matplotlib installation found, cannot create plots")
+            return
         time_map = super(MethodTimer, self).__getattribute__('time_map_')
         if isinstance(names, str):
             names = (names, )

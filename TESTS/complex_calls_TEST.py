@@ -32,4 +32,3 @@ if __name__ == "__main__":
     res = [obj1.print4() for i in range(500)]
     data = obj1.data_
     obj1.plot(('print1', 'print2', 'print3', 'print4'))
-    breakpoint()
