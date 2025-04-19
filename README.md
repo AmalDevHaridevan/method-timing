@@ -23,3 +23,14 @@ timing_data = wrapped_obj.data_
 wrapped_obj.plot(('fnc3','fnc2','fnc1'))
 wrapped_obj.plot_histograms(('fnc_3','fnc2','fnc1'))
 ```
+## Alternatively
+```python
+# MethodTimer will construct class A using args and kwargs, the 2nd arg specifies what methods to time track
+# by default, we track all (if empty)
+wrapped_obj = MethodTimer(A, (), *args, **kwargs)
+for i in range(1000):
+  wrapped_obj.fnc3(...)
+timing_data = wrapped_obj.data_
+wrapped_obj.plot(('fnc3','fnc2','fnc1'))
+wrapped_obj.plot_histograms(('fnc_3','fnc2','fnc1'))
+```
