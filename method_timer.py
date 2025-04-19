@@ -74,32 +74,21 @@ class MethodTimer:
         # get proper ref, we are using weakref
         obj = obj.__repr__.__self__
         # bootstrap objects getattr
-        def wrapped_getattr(obj_inst, name):
-            if name in time_map:
-                attr = super(type(obj_inst), obj_inst).__getattribute__(name)
+        def wrapped_getattr(obj_inst, name_):
+            if name_ in time_map:
+                attr = super(type(obj_inst), obj_inst).__getattribute__(name_)
                 def wrapped_fnc_(*args, **kwargs):
                     ts_ = time.time()
                     ret = attr(*args, **kwargs)
                     tf_ = time.time()
-                    time_map[name] = np.append(time_map[name], (tf_-ts_))
+                    time_map[name_] = np.append(time_map[name_], (tf_-ts_))
                     return ret
                 return wrapped_fnc_
             else:
-                return super(type(obj_inst), obj_inst).__getattribute__(name)
+                return super(type(obj_inst), obj_inst).__getattribute__(name_)
         obj_cls = type(obj)
         obj_cls.__getattribute__ = wrapped_getattr
-
-        if name in time_map:
-            attr = obj.__getattribute__(name)
-            def wrapped_fnc_(*args, **kwargs):
-                ts_ = time.time()
-                ret = attr(*args, **kwargs)
-                tf_ = time.time()
-                time_map[name] = np.append(time_map[name], (tf_-ts_))
-                return ret 
-            return wrapped_fnc_
-        else:
-            return obj.__getattribute__(name)
+        return obj.__getattribute__(name)
 
     def plot_histograms(self, names, /, *hist_args, **hist_kwargs):
         """plot time histograms for the methods specified
