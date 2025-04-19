@@ -20,6 +20,6 @@ wrapped_obj = MethodTimer(raw_obj)
 for i in range(1000):
   wrapped_obj.fnc3(...)
 timing_data = wrapped_obj.data_
-wrapped_obj.plot(('fnc3',))
-wrapped_obj.plot_histograms(('fnc_3'))
+wrapped_obj.plot(('fnc3','fnc2','fnc1'))
+wrapped_obj.plot_histograms(('fnc_3','fnc2','fnc1'))
 ```
