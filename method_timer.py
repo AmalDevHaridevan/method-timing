@@ -11,7 +11,7 @@ import copy
 import weakref
 
 class MethodTimer:
-    """Wapper class for arbitraty classes that enables timinng for indivudial methods"""
+    """Wapper class for arbitrary classes that enables timinng for indivudial methods"""
     def __init__(self, cls:Any , names:Tuple = (), /, *args, **kwargs) -> None:
         """
         Parameters
@@ -166,3 +166,8 @@ class MethodTimer:
         # get proper ref, we are using weakref
         obj = obj.__repr__.__self__
         return getattr(obj, '__repr__')()
+
+    def __call__(self, *args, **kwargs):
+        """callable wrapper if wrapped object implements __call__"""
+        call = self.__getattribute__("__call__")
+        return call(*args, **kwargs)
